@@ -35,12 +35,28 @@ ___
 
 ___
 
-* Linear search
-    * O(n) for **unsorted** list
-    * O(n) but more efficient for **sorted** list. 
-        * **Invariant**: Every item must be bigger than previous items in the list.
-        * **How?** Return *false* when *item* is smaller than the current element.
+### Linear search
 
+* O(n) for **unsorted** list
+* O(n) but more efficient for **sorted** list. 
+    * **Invariant**: Every item must be bigger than previous items in the list.
+    * **How?** Return *false* when *item* is smaller than the current element.
+
+### Binary search
+
+> If the value is the middle element, it is found.
+> Else if the value is **smaller** than the middle element, search left half of the list with the same method.
+> Else if the value is **larger** than the middle element, search right half of the list with the same method.
+
+* Divide and conquer technique
+* Can be solved either **recursively** or **iteratively**
+* Time complexity:
+    * Best case: 
+        * Occurs when item is in the middle.
+        * O(m) where m is the time to compare the middle item.
+    * Worst case:
+        * Occurs when item is not found.
+        * O(m*log(n)) where m is the time for each comparison, and log(n) is the number of comparisons.
 
 ## Other concepts
 ### Time complexity with Big O Notation

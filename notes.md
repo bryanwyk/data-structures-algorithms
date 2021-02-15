@@ -57,6 +57,9 @@ ___
     * Worst case:
         * Occurs when item is not found.
         * O(m*log(n)) where m is the time for each comparison, and log(n) is the number of comparisons.
+* Use cases:
+    * List is sorted and implemented via an array.
+        * An array would give O(1) access.
 
 ## Other concepts
 ### Time complexity with Big O Notation

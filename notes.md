@@ -31,7 +31,41 @@ ___
 * Arrays
 * Linked Nodes
 
-## 3. Search
+## 3. Sort
+
+___
+
+### Summary of Sorts
+| Algorithm | Best case | Worst case | Stable | Incremental |
+| --- | --- | --- | --- | --- |
+| Bubble Sort - Basic | O(N^2) | O(N^2) | Yes | Yes |
+| Bubble Sort - Optimised | O(N) | O(N^2) | Yes | Yes |
+
+
+### Sorting algorithm properties
+* Incremental: If it does not need to re-compute everything after a small change (e.g. if adding one new element to a sorted list should only take one iteration. It would not be incremental if it required re-sorting the entire list). 
+* Stable: If it maintains the relative order of elements. i.e. elements of the same value would always maintain their relative order.
+
+### 1st Sort: Bubble Sort
+> Each element finds their final position one at a time. 
+> 1. Start at position of the leftmost element X.
+> 2. Compare X to element Y on its right.
+> 3. If X > Y, swap them, otherwise don't. d
+> 4. Move one position to the right (if any).
+> 5. Repeat steps 1-4 N times, where N is the number of elements.
+
+* Invariants
+    * The list always has the same elements.
+    * After every traversal, the largest yet unsorted element gets to its final place (i.e. the largest ones always 'bubble up'). 
+* Time complexity:
+    * Assume constant time for comparison.
+    * Best case with optimisations: Occurs when the list is already sorted. O(N) where N is the number of elements.
+    * Worst case with optimisations: O(N^2) where both loops run entirely.
+* At its most basic level, bubble swap does both iterations entirely (best and worst case time complexity is O(N^2)). The following optimisations can be made:
+    * Add 'swapped' boolean to stop iteration if list is already sorted.
+    * Only traverse within the inner loop up to the point where elements are unsorted. Keep track of the index of where the unsorted elements end.
+
+## 4. Search
 
 ___
 
@@ -64,7 +98,21 @@ ___
 ## Other concepts
 ### Time complexity with Big O Notation
 * Each **for loop** is O(n) where n is the number of iterations.
-* Always consider **best case** and **worst case** time complexity.
+* Always consider **best case** and **worst case** time complexity. This gives the range of possibilities.
+* Ignore constants.
+* Ignore parts that do not contribute significantly.
+* Always assume an unknown input size n for each argument that can be. massive.
+* It is an upper bound (without the insignificant parts).
+
+| Big O Efficiency class | Notation | Description | N (# of elements) and T (time) relationship
+| --- | --- | --- | --- | --- |
+| Constant | O(1) | Run time does not depend on N | T always remains constant |
+| Logarithmic | O(log N) | Problem is broken down into smaller problems and solved independently. Each step cuts the size by a constant factor. *Note*: log2(N) is the number of times you can divide n by 2 before reaching 1. | If N doubles, T gets slightly slower.
+| Linear | O(N) | Each element requires a fixed amount of processing | If N doubles, T doubles.
+| Superlinear | O(NlogN) | Problem is broken into subproblems by a constant factor, then the final solution is obtained by combining the solutions. | If N doubles, then T gets slightly bigger than double. |
+| Quadratic | O(N^2) | Pairs of data items processed (e.g. double nested loop) | If N doubles, T increases 4 times |
+| Exponential | O(2^N) | Combinatorial explosion (e.g. family tree) | If N doubles, T squares. |
+| Factorial | O(N!) | Find all permutations of N items | - |
 
 ### Testing
 * Equivalence testing

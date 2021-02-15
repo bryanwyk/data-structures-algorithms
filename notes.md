@@ -23,6 +23,24 @@ ___
 * Test if empty or full: O(1)
 * Adding, deleting, finding and retrieving an element: O(1)
 
+### Stack
+#### Characteristics
+* LIFO behaviour (pop, push)
+* Often implemented with an **array** to store items in the order which they arrive, and an **integer** indicating the first empty space in the array.
+* Invariants:
+    * Valid data ranges from 0...top-1.
+
+#### Typical operations
+* Push
+* Pop
+* Get size
+* Test if empty or full
+
+#### Use cases
+* Reversing a sequence of characters
+* Undo editing
+* Parsing, run-time memory management, implement recursion
+
 ## 2. Data structures
 
 ___

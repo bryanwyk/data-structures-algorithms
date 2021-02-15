@@ -3,8 +3,6 @@
 # Notes
 ## 1. Abstract Data types
 
-___
-
 > Abstract data types provide information about the possible **values** of that type, the **meaning** of those values, and the **operations** that can be done to them. The implementation details are abstracted to us and we do not necessarily care. <br> Data types, on the other hand, provide the same information as well as knowing how those values are **implemented** (e.g. array).
 * Stacks
 * Queues
@@ -45,15 +43,11 @@ ___
 
 ## 2. Data structures
 
-___
-
 > Provide information about a particular way in which data is physically organised in memory.
 * Arrays
 * Linked Nodes
 
-## 3. Sort
-
-___
+## 3. Sorts
 
 ### Summary of Sorts
 | Algorithm | Best case | Worst case | Stable | Incremental |
@@ -107,8 +101,6 @@ ___
 
 ## 4. Search
 
-___
-
 ### Linear search
 
 * O(n) for **unsorted** list
@@ -145,7 +137,7 @@ ___
 * Always assume an unknown input size n for each argument that can be. massive.
 * It is an upper bound (without the insignificant parts).
 
-| Big O Efficiency class | Notation | Description | N (# of elements) and T (time) relationship
+| Big O Efficiency class | Notation | Description | N (# of elements) and T (time) relationship |
 | --- | --- | --- | --- | --- |
 | Constant | O(1) | Run time does not depend on N | T always remains constant |
 | Logarithmic | O(log N) | Problem is broken down into smaller problems and solved independently. Each step cuts the size by a constant factor. *Note*: log2(N) is the number of times you can divide n by 2 before reaching 1. | If N doubles, T gets slightly slower.

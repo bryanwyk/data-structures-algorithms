@@ -40,11 +40,11 @@ ___
 | --- | --- | --- | --- | --- |
 | Bubble Sort - Basic | O(N^2) | O(N^2) | Yes | Yes |
 | Bubble Sort - Optimised | O(N) | O(N^2) | Yes | Yes |
-
+| Selection Sort | O(N^2) | O(N^2) | No (e.g. 3,3,1) | No |
 
 ### Sorting algorithm properties
 * Incremental: If it does not need to re-compute everything after a small change (e.g. if adding one new element to a sorted list should only take one iteration. It would not be incremental if it required re-sorting the entire list). 
-* Stable: If it maintains the relative order of elements. i.e. elements of the same value would always maintain their relative order.
+* Stable: If it maintains the relative order of elements. i.e. elements of the same value would always maintain their relative order in the sorted output as they do in the input array.
 
 ### 1st Sort: Bubble Sort
 > Each element finds their final position one at a time. 
@@ -56,7 +56,7 @@ ___
 
 * Invariants
     * The list always has the same elements.
-    * After every traversal, the largest yet unsorted element gets to its final place (i.e. the largest ones always 'bubble up'). 
+    * After every traversal, the **largest** yet unsorted element gets to its final place (i.e. the largest ones always 'bubble up'). 
 * Time complexity:
     * Assume constant time for comparison.
     * Best case with optimisations: Occurs when the list is already sorted. O(N) where N is the number of elements.
@@ -64,6 +64,17 @@ ___
 * At its most basic level, bubble swap does both iterations entirely (best and worst case time complexity is O(N^2)). The following optimisations can be made:
     * Add 'swapped' boolean to stop iteration if list is already sorted.
     * Only traverse within the inner loop up to the point where elements are unsorted. Keep track of the index of where the unsorted elements end.
+
+### 2nd Sort: Selection Sort
+> 1. Start at position of the leftmost element X.
+> 2. Traverse to find the minimum element in the rest of the list.
+> 3. Swap with X.
+> 4. Move one position to the right.
+
+* Invariants
+    * After every traversal, the **smallest** yet unsorted element gets to its final place.
+* Time complexity:
+    * Best and worst case is O(n^2).
 
 ## 4. Search
 

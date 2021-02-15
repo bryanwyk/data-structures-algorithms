@@ -38,9 +38,10 @@ ___
 ### Summary of Sorts
 | Algorithm | Best case | Worst case | Stable | Incremental |
 | --- | --- | --- | --- | --- |
-| Bubble Sort - Basic | O(N^2) | O(N^2) | Yes | Yes |
-| Bubble Sort - Optimised | O(N) | O(N^2) | Yes | Yes |
+| Bubble Sort - Basic | O(N^2) | O(N^2) | Yes | Yes (add to front), No (add to back) |
+| Bubble Sort - Optimised | O(N) | O(N^2) | Yes | Yes (add to front), No (add to back) |
 | Selection Sort | O(N^2) | O(N^2) | No (e.g. 3,3,1) | No |
+| Insertion Sort | O(N) | O(N^2) | Yes | Yes (add to back), No (add to front) |
 
 ### Sorting algorithm properties
 * Incremental: If it does not need to re-compute everything after a small change (e.g. if adding one new element to a sorted list should only take one iteration. It would not be incremental if it required re-sorting the entire list). 
@@ -76,6 +77,14 @@ ___
 * Time complexity:
     * Best and worst case is O(n^2).
 
+### 3rd Sort: Insertion Sort
+> Split the list into sorted and unsorted. 
+> Extend 'sorted' by taking the smallest element from 'unsorted', shifting everything in sorted it is smaller than one to the right, and inserting it in to the start of 'sorted'.
+
+* Time complexity:
+    * Best case: Occurs when the list is already sorted. O(N) where N is the number of elements.
+    * Worst case: O(N^2).
+
 ## 4. Search
 
 ___
@@ -110,6 +119,7 @@ ___
 ### Time complexity with Big O Notation
 * Each **for loop** is O(n) where n is the number of iterations.
 * Always consider **best case** and **worst case** time complexity. This gives the range of possibilities.
+    * Average case is between the two.
 * Ignore constants.
 * Ignore parts that do not contribute significantly.
 * Always assume an unknown input size n for each argument that can be. massive.

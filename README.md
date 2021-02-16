@@ -214,6 +214,21 @@
 * Every iterative problem can be solved recursively.
 * Every recursive problem can be solved iteratively, BUT past results may need to be stored in an accumulator or stack.
 
+### Problems
+* Factorial
+* Fibonacci (revise accumulator version)
+    * Time complexity: O(2^n). Where log2(n) occurs when a problem keeps getting divided into half, fibonacci is binary (two recursive calls each time), so the problem doubles. Log is the inverse of exponential.
+* Power (to add)
+* Tower of Hanoi
+
+### Recursive Sorts
+
+#### RS 1: Merge sort
+* Divide and conquer approach
+* Keeps splitting the solution and then sorts on the way back up from the recursion.
+
+####
+
 ### Notation
 * Unary, binary, n-ary:
     * Unary: A single recursive call.

@@ -46,6 +46,7 @@
 * Parsing, run-time memory management, implement recursion
 
 ### Linked Stack
+* Null/None is what the bottom node of the stack should be pointing to.
 #### Comparison to Stack with Arrays
 * Advantages:
     * Easy to resize (whereas arrays would have fixed size)
@@ -57,7 +58,7 @@
 ### Queue
 #### Characteristics
 * FIFO behaviour (serve items from the front, append items to the rear).
-* Requires keeping track of the start and end of the queue.
+* Requires keeping track of the start and end of the queue. 
 * Note: If implementing with a fixed-size array, one way to tackle the issue of running out of space where *start* is not at index 0 is to implement a **circular queue** instead.
 
 #### Typical operations
@@ -79,9 +80,17 @@
 * Print string/objects in a FIFO manner.
 * Scheduling and buffering (printers, keyboards, async procedure calls)
 
-## 2. Data structures
+### Linked Queue (revise more)
+* Null/None is what rear node should be linked to.
+* Time complexity:
+    * Append: O(1)
+    * Serve: O(1)
+#### Use cases
+* e.g. Delete all even nodes
 
-> Provide information about a particular way in which data is physically organised in memory.
+## 2. Data Structures
+
+> Provide information about a particular way in which data is physically organised in memory. i.e. the way a given Data Type is implemented.
 ### Arrays
 * ADTs can be implemented with arrays
 ### Linked Nodes

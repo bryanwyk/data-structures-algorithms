@@ -1,7 +1,7 @@
 >This is the space where I will be revising and testing my knowledge of data structures and algorithms. 
 >I will be using JavaScript as my language of choice.
-# Notes
-## 1. Abstract Data types
+# 1. Data Structures/Data Types
+## 1.1 Abstract Data Types
 
 > Abstract data types provide information about the possible **values** of that type, the **meaning** of those values, and the **operations** that can be done to them. The implementation details are abstracted to us and we do not necessarily care. 
 > <br> 
@@ -88,7 +88,7 @@
 #### Use cases
 * e.g. Delete all even nodes
 
-## 2. Data Structures
+## 1.2 Data Structures
 
 > Provide information about a particular way in which data is physically organised in memory. i.e. the way a given Data Type is implemented.
 ### Arrays
@@ -104,7 +104,8 @@
 * Disadvantages:
     * More memory used than an array if the array is relatively full.
 
-## 3. Sorts
+# 2. Algorithms
+## 2.1 Sorts
 
 ### Summary of Sorts
 | Algorithm | Best case | Worst case | Stable | Incremental |
@@ -156,7 +157,7 @@
     * Best case: Occurs when the list is already sorted. O(N) where N is the number of elements.
     * Worst case: O(N^2).
 
-## 4. Search
+## 2.2 Search
 
 ### Linear search
 
@@ -184,14 +185,14 @@
     * List is sorted and implemented via an array.
         * An array would give O(1) access.
 
-## Other concepts
-### Time complexity with Big O Notation
+# 3. Concepts
+## 3.1 Time complexity with Big O Notation
 * Each **for loop** is O(n) where n is the number of iterations.
 * Always consider **best case** and **worst case** time complexity. This gives the range of possibilities.
     * Average case is between the two.
 * Ignore constants.
 * Ignore parts that do not contribute significantly.
-* Always assume an unknown input size n for each argument that can be. massive.
+* Always assume an unknown input size n for each argument that can be massive.
 * It is an upper bound (without the insignificant parts).
 
 | Big O Efficiency class | Notation | Description | N (# of elements) and T (time) relationship |
@@ -204,7 +205,28 @@
 | Exponential | O(2^N) | Combinatorial explosion (e.g. family tree) | If N doubles, T squares. |
 | Factorial | O(N!) | Find all permutations of N items | - |
 
-### Testing
+## 3.2 Recursion (revise more)
+* Breaking a problem into smaller sub-problems until it reaches a base case, and then as we return through the calls it should be combining these sub-solutions.
+* General structure:
+    * At least one base case (solve directly)
+    * At least one recursive call whose result is combined.
+    * Convergence to the base case (i.e. each sub-problem must be simpler).
+* Every iterative problem can be solved recursively.
+* Every recursive problem can be solved iteratively, BUT past results may need to be stored in an accumulator or stack.
+    * An **accumulator** accumulates the result. The alternative is to have the function simply return the result.
+
+### Notation
+* Unary, binary, n-ary:
+    * Unary: A single recursive call.
+    * Binary: Two recursive calls.
+    * n-ary: n recursive calls.
+* Direct vs Indirect:
+    * Direct: recursive calls are calls to the same function.
+    * Indirect: recursive calls are calls to two or more methods.
+* Tail-recursion:
+    * Where the result of the recursive call is the result of the function.
+
+## 3.3 Testing
 * Equivalence testing
     * Divide possible discrete inputs into equivalent classes and test each.
 * Boundary analysis

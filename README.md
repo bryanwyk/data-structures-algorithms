@@ -3,7 +3,11 @@
 # Notes
 ## 1. Abstract Data types
 
-> Abstract data types provide information about the possible **values** of that type, the **meaning** of those values, and the **operations** that can be done to them. The implementation details are abstracted to us and we do not necessarily care. <br> Data types, on the other hand, provide the same information as well as knowing how those values are **implemented** (e.g. array).
+> Abstract data types provide information about the possible **values** of that type, the **meaning** of those values, and the **operations** that can be done to them. The implementation details are abstracted to us and we do not necessarily care. 
+> <br> 
+> Data types, on the other hand, provide the same information as well as knowing how those values are **implemented** (e.g. array).
+> <br>
+> The benefit is that you can use ADTs to store data without needing to worry about its specific implementation, and just call its methods (abstraction). 
 * Stacks
 * Queues
 * Lists
@@ -41,6 +45,15 @@
 * Undo editing
 * Parsing, run-time memory management, implement recursion
 
+### Linked Stack
+#### Comparison to Stack with Arrays
+* Advantages:
+    * Easy to resize (whereas arrays would have fixed size)
+* Disadvantage:
+    * Needs more memory space if the array would be relatively full.
+    * A bit slower. It is still constant time for all its operations though.
+
+
 ### Queue
 #### Characteristics
 * FIFO behaviour (serve items from the front, append items to the rear).
@@ -69,8 +82,18 @@
 ## 2. Data structures
 
 > Provide information about a particular way in which data is physically organised in memory.
-* Arrays
-* Linked Nodes
+### Arrays
+* ADTs can be implemented with arrays
+### Linked Nodes
+* ADTs can be implemented as a collection of **nodes**.
+* Each node contains one or more data items, and one or more links to other nodes.
+* Advantages:
+    * Fast deletion. The node is just deleted and the links are changed, there is no need for re-shuffling (e.g. in a List).
+    * Fast adding. Add a new node and link it.
+    * Easily resizable. Just create/delete nodes - no need to keep count or resize arrays.
+    * Less memory used than an array if the array is relatively empty (e.g. a few nodes as opposed to an large-sized array that is mostly empty).
+* Disadvantages:
+    * More memory used than an array if the array is relatively full.
 
 ## 3. Sorts
 

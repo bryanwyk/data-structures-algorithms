@@ -1,3 +1,4 @@
+// Assumes Array is of fixed size.
 class Stack {
     constructor(size){
         this.stack = [0, new Array(size)];

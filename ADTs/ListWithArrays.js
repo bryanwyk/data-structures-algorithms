@@ -1,3 +1,4 @@
+// Assumes the Array is of fixed size.
 class UnsortedList {
     // Creating with a bounded size
     constructor(size){

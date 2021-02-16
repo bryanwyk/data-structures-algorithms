@@ -27,19 +27,44 @@
 #### Characteristics
 * LIFO behaviour (pop, push)
 * Often implemented with an **array** to store items in the order which they arrive, and an **integer** indicating the first empty space in the array.
+* Requires keeping track of the top of the stack.
 * Invariants:
     * Valid data ranges from 0...top-1.
 
 #### Typical operations
 * Push
 * Pop
-* Get size
-* Test if empty or full
+* Get size, test if empty or full
 
 #### Use cases
 * Reversing a sequence of characters
 * Undo editing
 * Parsing, run-time memory management, implement recursion
+
+### Queue
+#### Characteristics
+* FIFO behaviour (serve items from the front, append items to the rear).
+* Requires keeping track of the start and end of the queue.
+* Note: If implementing with a fixed-size array, one way to tackle the issue of running out of space where *start* is not at index 0 is to implement a **circular queue** instead.
+
+#### Typical operations
+* Append
+* Serve
+* Reset
+* Get size, test if empty or full
+
+### Circular Queue (revise more)
+#### Characteristics
+* Simulated by allowing front and rear to wrap around each other.
+* To do this, keep track of an extra attribute *count*.
+    * Used to count number of valid elements in the queue. Thus, it can check if the queue is actually full or not when start===end.
+    * Move rear on append using (rear + 1) % array.length.
+* Time complexity:
+    * To print everything in a queue: O(count*m), where m is the time it takes to print an item (which depends on the size of each item).
+
+#### Use cases
+* Print string/objects in a FIFO manner.
+* Scheduling and buffering (printers, keyboards, async procedure calls)
 
 ## 2. Data structures
 

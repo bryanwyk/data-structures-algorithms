@@ -213,7 +213,6 @@
     * Convergence to the base case (i.e. each sub-problem must be simpler).
 * Every iterative problem can be solved recursively.
 * Every recursive problem can be solved iteratively, BUT past results may need to be stored in an accumulator or stack.
-    * An **accumulator** accumulates the result. The alternative is to have the function simply return the result.
 
 ### Notation
 * Unary, binary, n-ary:
@@ -225,6 +224,7 @@
     * Indirect: recursive calls are calls to two or more methods.
 * Tail-recursion:
     * Where the result of the recursive call is the result of the function.
+    * Uses an **accumulator** which accumulates the result on the way down to the base case. Then, it does nothing on the way back on the returns from the recursive call except to carry the result back.
 
 ## 3.3 Testing
 * Equivalence testing

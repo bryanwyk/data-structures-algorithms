@@ -163,7 +163,7 @@
 * It is an upper bound (without the insignificant parts).
 
 | Big O Efficiency class | Notation | Description | N (# of elements) and T (time) relationship |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- |
 | Constant | O(1) | Run time does not depend on N | T always remains constant |
 | Logarithmic | O(log N) | Problem is broken down into smaller problems and solved independently. Each step cuts the size by a constant factor. *Note*: log2(N) is the number of times you can divide n by 2 before reaching 1. | If N doubles, T gets slightly slower.
 | Linear | O(N) | Each element requires a fixed amount of processing | If N doubles, T doubles.

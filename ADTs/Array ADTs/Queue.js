@@ -78,7 +78,7 @@ class CircularQueue{
     append(item) {
         [front, rear, queue, count] = this.queue;
         queue[rear] = item;
-        this.queue = [front, (rear + 1) % this.queue.length, queue, count+1];
+        this.queue = [front, (rear + 1) % queue.length, queue, count+1];
         return true;
     }
 
@@ -86,7 +86,7 @@ class CircularQueue{
         if (!this.isEmpty()){
             [front, rear, queue, count] = this.queue;
             let item = queue[front];
-            this.queue = [front + 1, rear, queue];
+            this.queue = [front + 1, rear, queue, count - 1];
             return item;
         }
         return null;
@@ -96,7 +96,8 @@ class CircularQueue{
         [front, rear, queue, count] = this.queue;
         front = 0;
         rear = 0;
-        this.queue = [front, rear, queue];
+        count = 0;
+        this.queue = [front, rear, queue, count];
     }
 
     printItems(){

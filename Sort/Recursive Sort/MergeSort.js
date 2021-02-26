@@ -3,7 +3,7 @@ const mergeSort = (array) => {
     let tmp = new Array();
     const start = 0;
     const end = array.length - 1;
-    mergeSortAux(array, start, end, tmp);
+    return mergeSortAux(array, start, end, tmp);
 }
 
 const mergeSortAux = (array, start, end, tmp) => {

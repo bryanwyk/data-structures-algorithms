@@ -265,6 +265,75 @@
 
 * Can use a stack to iterate PreOrder.
 
+### Priority queue
+
+#### Characteristics
+* Each item in the queue has a priority associated to it.
+* The next item to be served is the one with the greatest priority (hence, a 'rear' marker is no longer needed).
+* Can be implemented using arrays, linked lists, BSTs, or a heap (refer to notes below).
+* For linear structures (arrays, linked lists):
+    * *getMax* would have  worst case time complexity of O(N) if unsorted, and O(1) for sorted.
+    * *add* would have worst case time complexity of O(1) if unsorted, and O(N) if sorted.
+
+#### Typical operations
+* add
+    * Unsorted array:
+        * Add to next empty space in the array.
+        * Time complexity:
+            * Best and worst case: O(1) as you just add to the marker of the next empty spot.
+    * Sorted array:
+        * Search for spot in the array, remove it, and then shuffle everything backwards.
+        * Time complexity:
+            * Best case: O(log N)*OComp using binary search, where the element is the largest, and no shuffling is required.
+            * Worst case: O(N), where the element is the smallest, and shuffling of all elements is required.
+    * Unsorted linked list:
+        * Create node at head of the list.
+        * Time complexity:
+            * Best and worst case: O(1) as you just add to the head.
+    * Sorted linked list:
+        * Largest would be kept at the head.
+        * Time complexity:
+            * Best case: O(1)*OComp, where the input item is larger than the head.
+            * Worst case: O(N)*OComp, where the input item becomes the smallest item in the list.
+* getMax: Equivalent to 'serve' for a regular queue. Finds the maximum, removes it, and shuffles the remaining elements.
+    * Unsorted array: 
+        * Swap the next empty (null) spot with the served element, as it is easier than shuffling everything.
+        * Time complexity:
+            * Best and worst case: O(N)*OComp where N is the size of the queue, since we need to compare every element to find the max.
+    * Sorted array:
+        * Time complexity:
+            * Best and worst case: O(1). Remove the last element in the array, and then shift marker backwards one position.
+    * Unsorted linked list:
+        * Time complexity:
+            * Best and worst case: O(N)*OComp. Every element needs to be iterated through.
+    * Sorted linked list:
+        * Time complexity:
+            * Best and worst case: O(1) as you remove from the head, and then re-attach the next node to the head.
+    * BST:
+        * Time complexity:
+            * Best case: O(1) where the max is the root.
+            * Worst case: O(Depth) if balanced, O(N) if unbalanced.
+        
+### Heap
+
+#### Characteristics
+* Is a binary tree that is 
+    * Complete: all levels but the last are full, and the last level is filled from the left.
+    * Heap-ordered: explained below.
+* Can either be a max-heap (where greater numbers are higher priority and it uses getMax), or a min-heap (where lower numbers are a higher priority and it uses getMin).
+* Max-heap
+    * *Heap-ordered*: Every child is smaller than (or equal to) its parent.
+* Min-heap
+    * *Heap-ordered*: Every child is greater than (or equal to) its parent
+
+#### Typical operations for a max-heap
+
+* add
+    * Add the element to the next empty node as you would a BST, then keep swapping it up until the heap becomes heap-ordered.
+* getMax
+    * Swap the latest leaf with the root. Remove the root. Then swap the leaf (that is now at the root position) with the largest child, and repeatedly sink it until the heap becomes heap-ordered.
+
+
 ## 1.2 Data Structures
 
 > Provide information about a particular way in which data is physically organised in memory. i.e. the way a given Data Type is implemented.

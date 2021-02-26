@@ -74,4 +74,33 @@ class BinarySearchTree{
         return current;
     }
 
+    getMax() {
+        // If the tree is empty
+        if (this.root === null) {
+            console.error('Tried getting max in an empty tree.');
+        }
+        // If the root is the max element
+        else if (this.root.right === null) {
+            let tmp = this.root;
+            this.root = this.root.left;
+            return tmp;
+        }
+        // If the max element is not the root
+        else {
+            getMaxAux(this.root, this.root.right);
+        }
+    }
+
+    // We can alternatively only pass in the parent, and get child by doing parent.right.right.
+    getMaxAux(parent, child) {
+        // Base case: child node is the right-most node (max)
+        if (child.right === null) {
+            // If the child has a left child, then attach that to the parent's right
+            parent.right = child.left;
+            return child;
+        }
+        // Else, continue traversing to the right.
+        return this.getMaxAux(child, child.right);
+    }
+
 }

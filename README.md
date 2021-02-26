@@ -224,9 +224,10 @@
 * Tower of Hanoi
 
 ### Recursive Sorts
-
+> Divide and conquer approach
+> Note that the algorithms run within the array. Each 'split' is really a 'segment' of that array.
+> Both of these also use accumulators (i.e. the whole array is passed recursively), and thus require auxiliary functions. They are tail recursive (nothing is done 'on the way down').
 #### RS 1: Merge sort
-* Divide and conquer approach
 * https://www.youtube.com/watch?v=TzeBrDU-JaY
 * Keeps splitting the solution, then sorts on the way back up from the recursion, then merges the sorted sub-solutions.
 * General structure:
@@ -243,7 +244,22 @@
 * Space complexity: O(n) where n is the number of elements.
 
 
-####
+#### RS 2: Quick sort
+* https://www.youtube.com/watch?v=COk73cpQbFQ
+* General structure:
+    * Select the middle as the pivot *p*.
+    * Partition the array into two based on *p*.
+        * LHS has all elements smaller than *p*;
+        * RHS has all elements greater than *p*;
+    * Keep repeating the partitioning.
+* Time complexity:
+    * Best case: The value of *p* is ideally the median for best time complexity. This would be O(N*log(N)) where N is the number of elements, as it would mean the array would be perfectly partitioned in half each time, and then compared to every other element.
+    * Worst case: Where *p* is always the smallest or largest element. This would be O(N^2) where N is the number of elements. This is because the array would need to be partitioned by every single element, and compared to every other element.
+* Possible ways to select the pivot:
+    * Pick the first element - bad idea.
+    * Pick a random element - bad idea.
+    * Pick a small sample of elements and choose the median of these - good idea.
+* For now, we will just pick the middle element for simplicity.
 
 ### Notation
 * Unary, binary, n-ary:

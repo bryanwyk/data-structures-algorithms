@@ -1,4 +1,3 @@
-// N.B. tmp is the accumulator
 const mergeSort = (array) => {
     let tmp = new Array();
     const start = 0;

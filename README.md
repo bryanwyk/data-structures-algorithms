@@ -1,5 +1,6 @@
 >This is the space where I will be revising and testing my knowledge of data structures and algorithms. 
 >I will be using JavaScript as my language of choice.
+>Note: There is no need to initialise length of an array in JavaScript (https://stackoverflow.com/questions/4852017/how-to-initialize-an-arrays-length-in-javascript).
 # 1. Data Structures/Data Types
 ## 1.1 Abstract Data Types
 
@@ -114,6 +115,7 @@
 | Bubble Sort - Optimised | O(N) | O(N^2) | Yes | Yes (add to front), No (add to back) |
 | Selection Sort | O(N^2) | O(N^2) | No (e.g. 3,3,1) | No |
 | Insertion Sort | O(N) | O(N^2) | Yes | Yes (add to back), No (add to front) |
+| Merge Sort | O(Nlog(N)) | O(Nlog(N)) | - | - |
 
 ### Sorting algorithm properties
 * Incremental: If it does not need to re-compute everything after a small change (e.g. if adding one new element to a sorted list should only take one iteration. It would not be incremental if it required re-sorting the entire list). 
@@ -225,7 +227,21 @@
 
 #### RS 1: Merge sort
 * Divide and conquer approach
-* Keeps splitting the solution and then sorts on the way back up from the recursion.
+* https://www.youtube.com/watch?v=TzeBrDU-JaY
+* Keeps splitting the solution, then sorts on the way back up from the recursion, then merges the sorted sub-solutions.
+* General structure:
+    * Create a temporary array of the same size as the original array.
+    * Merge sort the left half (L).
+        * We cannot magicaclly sort each half if we only have two halves. So instead, we have to recursively call merge sort on each half to break them down even further.
+        * An array with one element is automatically sorted.
+    * Merge sort the right half (R).
+    * Merge the left and right sorted halves.
+* Invariant:
+    * At any point, the next smallest element is either the smallest unpicked sorted element in L or R.
+        * Therefore, three markers are required on the next position of L, R, and the temporary array.
+* Time complexity: O(nlog(n)) where n is the number of elements.
+* Space complexity: O(n) where n is the number of elements.
+
 
 ####
 

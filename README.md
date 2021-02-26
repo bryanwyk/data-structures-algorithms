@@ -89,6 +89,87 @@
 #### Use cases
 * e.g. Delete all even nodes
 
+### Hash Tables
+* Similar to dictionaries (Python-specific), which are objects in JavaScript.
+* Implement with arrays within array (to store the key and data).
+    * In Python, tuples would be used.
+* **Used for searching**.
+    * Stack would not be suitable as it is LIFO.
+    * Queue would not be suitable as it is FIFO.
+    * Unsorted list would not be suitable as the worst case is O(N).
+        * Binary search for array.
+        * Linear search for linked list.
+    * Sorted list would not be suitable as the worst case is O(N).
+        * Binary search for array.
+        * Linear search for linked list.
+* Time complexity:
+    * Search:
+        * Best case: allows constant O(1) time complexity. Only the key is needed, and the collection of items do not have to be traversed (as they would in a list).
+        * Worst case: O(N) where N is the number of elements.
+            * Depends on the hash function.
+* Structure:
+    * Each data element to be inserted must contain the item it is storing, and a unique key.
+
+#### Typical operations
+* Hash function
+    * Maps the unique key to an array position.
+    * Needs to minimise collisions (two keys mapped to same position).
+    * How to define:
+        1. Do not use numbers/letters/values etc. not relevant to the meaning of the data itself.
+        2. The more elements from the key used, the better the hash function. But using all elements may be slow.
+        3. Using all elements is not enough to guarantee a good spread of possible indices (e.g. adding all letters that have been converted into digits would still give possible numbers in a limited range). Use all elements **and** take into account its position in the key.
+        4. The result should be something in the range of our TABLESIZE.
+            * If it ends up too big, we can use % TABLESIZE.
+            * If it ends up too small, we can convert to 0..1, and * TABLESIZE.
+        5. Horner's method can be used.
+            * Use a prime value for the table size. If many values and TABLESIZE share common factors, they will hash tot he same position.
+* Insert
+* Search
+* Delete
+
+#### Conflict resolution when dealing with collisions
+> Which to pick:
+> 1. **Linear probing** - if sufficient memory is used to ensure the table size is big to reduce chance of collision.
+> 2. **Double hashing** - makes most efficient use of memory (in current table), but requires need to compute a second hash. Outperforms linear probing where the load factor is approaching 1 (i.e. fuller tables).
+> 3. **Separate chaining** - simplest, resizable (use if do not know how many items to be included and there is a reasonable chance the table will become full), has fast insert and delete, but slow search. The load factor can be greater than 1. Also does not require rehashing every item in the case that the table becomes full like it does in open addressing.
+* Open addressing (when each array position contains a single item)
+    * Linear probing
+        * How it works:
+            * If array[N] is empty, put it there
+            * If not, put item in the first empty space in the array from N+1 onward
+        * Be careful of:
+            * A full table - would need to rehash the entire table (create a bigger array and re-insert all items)
+            * Restarting from position 0 if the end of the table is reached
+        * Searching would need to require a linear search following the constant access search which can lead to O(N) at the worst case where N is the number of elements.
+            * Alternative is to take bigger steps rather than N+1 (quadratic probing).
+        * Deleting
+            * We cannot just delete the item from its position (because there may be items placed in subsequent positions as a result of the linear probing). We also cannot re-shuffle everything back one position in subsequent positions as they may be in the right hashing spot without any linear probing.
+            * Solution: re-insert every item from N+1 onward up until the first empty position.
+        * A **cluster** is a sequence of full hash table slots. These tend to grow larger once they are formed.
+        * Load factor: total # of items / TABLESIZE
+            * There is a tendency for clustering to occur as the load factor is >0.5.
+    * Quadratic probing
+        * Do N+S^2, rather than N+S, where S is the step size (e.g. S=1).
+        * Advantage: eliminates **primary clustering** (keys with different hash values having the same probe chains).
+        * Disadvantage: still contains **secondary clustering** (keys with same hash values have the same probe chain).
+        * Better alternative is double hashing.
+    * Double hashing
+        * When a collision occurs, a second hash function is used to determine the step.
+            * Must not hash to 0.
+            * Must be relative prime to the table size (not revisit the same positions)
+* Separate Chaining (when each array position contains a linked list of items)
+    * Insert: key inserted at end of linked list
+    * Search: search for key in linked list
+    * Delete: search for key, and then delete the node in the linked list
+    * Advantages:
+        * Insertions and deletions are easy and quick.
+        * Naturally resizable.
+    * Disadvantages:
+        * Requires extra space for links.
+        * Requires linear search for searching/deleting elements in a linked list.
+
+
+
 ## 1.2 Data Structures
 
 > Provide information about a particular way in which data is physically organised in memory. i.e. the way a given Data Type is implemented.
@@ -192,6 +273,7 @@
 * Each **for loop** is O(n) where n is the number of iterations.
 * Always consider **best case** and **worst case** time complexity. This gives the range of possibilities.
     * Average case is between the two.
+* When comparing algorithms, always compare the worst case. The best case is usually an exception, and we always want to prepare for the worst.
 * Ignore constants.
 * Ignore parts that do not contribute significantly.
 * Always assume an unknown input size n for each argument that can be massive.

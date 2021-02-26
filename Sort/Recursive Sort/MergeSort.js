@@ -26,7 +26,7 @@ const mergeSortAux = (array, start, end, tmp) => {
 const mergeArrays = (array, start, mid, end, tmp) => {
     let l = start;
 
-    for (let k=0; k<array.length; k++){
+    for (let k=start; k<=end; k++){
         // if l > mid, copy r
         if (l > mid) {
             tmp[k] = array[r];

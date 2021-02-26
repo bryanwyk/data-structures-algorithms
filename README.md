@@ -216,6 +216,54 @@
 * Organisation structure charts
 * Structure of chapters and sections in a book
 
+### Binary Search Tree
+#### Characteristics
+* Each node entry has a unique key and an item
+* All keys in the left subtree of a node are less than the key of the node
+* All keys in the right subtree of a node are greater than the key of the node
+
+#### Use cases
+* Good for searching (worst case time complexity is binary at O(log(N)*M) where N is the number of nodes, and M is the complexity of comparison) AND inserting and deleting (O(1) time complexity).
+    * Best case of search is O(1) where key is at root.
+    * Worst-case search time complexity is only O(log(N)* M) where the tree is balanced. If it is unbalanced, the worst case is (O(N)* M) e.g. linear tree/
+        * To solve this, ensure that BST remains balanced at insertion/deletion (e.g. through the use of AVL trees).
+* Alternative to sorted lists.
+    * Sorted lists with arrays are good for search (binary), but bad for inserting/deleting (O(N) shuffling).
+    * Sorted lists with linked lists are bad for search (linear), but good for inserting/deleting (O(1)).
+* Alternative to hash tables if you need to traverse in a certain way.
+
+#### Typical operations
+* Search - described above
+* Insert
+    * Time complexity (N.B. we need complexity of comparison included as the item could be anything from a number to a string):
+        * Worst case:
+            * Balanced: O(log(N))*CompComparison
+            * Unbalanced: O(N)*CompComparison
+        * Best case: 
+            * DO NOT SAY O(1)*CompComparison to attach to root as this is an exception/edge case.
+            * Say O(1)*CompComparison where all the nodes are in the right or in the left, and the item is added to the opposite side.
+    * Ways to prove correctness:
+        * Check that a single node is added each time to the end, at an empty left/right child of current.
+        * Prove by contradiction. Assume the tree is no longer a BST, and show if it is possible for a larger key to be added to the left, or a smaller key to be added to the right.
+* Delete
+    * If the node is a leaf:
+        * Find the node.
+        * Simply remove it from the parent node.
+    * If the node has a single child:
+        * Find the node.
+        * Remove it from the parent node.
+        * Attach the child to the parent node.
+    * If the node has two children:
+        * Find the node.
+        * Remove it from the parent node.
+        * Replace the node with its successor.
+            * Find the sucessor by taking one step to the right, then all steps to the left until you find a leaf.
+                * The successor can never have a left child, because then that would become the successor instead.
+                * If the successor has a right child, attach the right child to the parent node of the successor.
+
+#### Iterating a BST
+
+* Can use a stack to iterate PreOrder.
 
 ## 1.2 Data Structures
 

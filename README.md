@@ -90,6 +90,8 @@
 * e.g. Delete all even nodes
 
 ### Hash Tables
+
+#### Characteristics
 * Similar to dictionaries (Python-specific), which are objects in JavaScript.
 * Implement with arrays within array (to store the key and data).
     * In Python, tuples would be used.
@@ -168,6 +170,51 @@
         * Requires extra space for links.
         * Requires linear search for searching/deleting elements in a linked list.
 
+### Binary Tree
+* Good for searching.
+
+#### Characteristics
+* Consists of nodes and edges (directed i.e. arrow signifies direction).
+* Node terminology:
+    * A node can be a *parent* or *child* node.
+    * Root node, inner nodes (anything that is not a root or leaf), leaf nodes.
+* Tree terminology:
+    * A sub-tree is a segment of the tree. A node can be considered a sub-tree.
+    * A path is a directed sequence of edges.
+    * Level: the root node is at level 0, and each child begins a new subsequent level.
+        * The depth of a node is its level in the tree.
+        * The height/depth of a tree is the max length of a path from the route.
+            * Recursively computed as the max height of its nodes. An empty node is -1, and the max height of its children is +1.
+    * The width of a tree is the number of nodes in the level with the most nodes.
+* Each node can have at most 2 children.
+* Binary tree terminology:
+    * **Balanced** if for every node, the difference between the height of the left sub-tree and that of the right sub-tree is at most 1. Otherwise, it is **unbalanced**.
+        * This is specific to being 'height-balanced'. It is also possible to look at being 'weight-balanced'. This depends on the type of balanced tree it is.
+    * **Perfect** binary trees are where all parents have two children, and all leaves are at the same level.
+        * Where height is *k*, the # of leaves should be 2^*k*, and the # of nodes is 2^(k+1) - 1.
+            * Height would be O(logN).
+
+#### Essentially a graph
+* Graphs are composed of vertices (nodes) and edges.
+* A tree is an acyclic, connected graph. In CS, we are looking at *rooted* trees.
+
+#### Traversal methods
+> Preorder: processes the root, then the left subtree, then the right subtree.
+> Inorder: processes the left subtree, then the root, then the right subtree.
+> Postorder: processes the left subtree, then the right subtree, then the root.
+
+1. Preorder
+2. Inorder
+3. Postorder
+
+* Time complexity:
+    * Best case = worst case
+    * O(N)*Compf where N is the number of elements, and Compf is the complexity of a function f executed on each element.
+
+#### Use cases
+* Family trees
+* Organisation structure charts
+* Structure of chapters and sections in a book
 
 
 ## 1.2 Data Structures

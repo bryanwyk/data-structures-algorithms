@@ -368,6 +368,14 @@
         * Worst case: Where the element sinks to the bottom of the heap, which is O(logN)*OCopm, where O(logN) swaps are made and logN is the depth of the heap.
 
 
+### AVL Tree
+#### Characteristics
+* Height-balanced BST.
+    * Any time that the heights differ by more than one, re-balancing is done.
+    * Each node has a balance factor of 0, 1, or more.
+#### Re-balancing
+* Refer to slide notes.
+
 ## 1.2 Data Structures
 
 > Provide information about a particular way in which data is physically organised in memory. i.e. the way a given Data Type is implemented.

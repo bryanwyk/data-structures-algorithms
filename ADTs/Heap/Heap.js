@@ -1,9 +1,17 @@
 class maxHeap {
-    constructor(){
-        this.count = 0;
+    constructor(array=[]){
+        this.count = array.length;
 
         // the array would be filled with added items, undefined in empty positions.
-        this.array = [];
+        this.array = array;
+
+        // if the array was pre-loaded with elements
+        if (this.count > 1) {
+            // heapify every parent node (i.e. every node that is not a leaf)
+            for (let i=(Math.floor(this.count/2)); i>=0; i--) {
+                this.sink(this.array[i]);
+            }
+        }
     }
 
     // ADDING

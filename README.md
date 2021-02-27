@@ -338,6 +338,7 @@
 | 4 | 8 | 9 |  
 | 5 | 10 | 11 |
 
+* If the heap has known elements in advance (i.e. array with elements in any order is passed), then every parent has to be sunk to ensure the heap is heap-ordered.
 
 #### Typical operations for a max-heap
 

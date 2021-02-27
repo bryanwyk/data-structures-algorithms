@@ -26,3 +26,20 @@ const fibAux = (n, acc1, acc2) => {
     }
     return fibAux(n-1, acc1, acc1+acc2);
 }
+
+// DYNAMIC PROGRAMMING (with memoisation)
+
+const fibDP = (n) => {
+    const memo = new Array(null);
+    memo[0] = 0;
+    memo[1] = 1;
+    return fibDPAux(n, memo);
+}
+
+const fibDPAux = (n, memo) => {
+    if (memo[n] !== null) {
+        return memo[n];
+    }
+    memo[n] = fibDPAux(n-1, memo) + fibDPAux(n-2, memo);
+    return memo[n];
+}

@@ -134,7 +134,7 @@
 > 1. **Linear probing** - if sufficient memory is used to ensure the table size is big to reduce chance of collision.
 > 2. **Double hashing** - makes most efficient use of memory (in current table), but requires need to compute a second hash. Outperforms linear probing where the load factor is approaching 1 (i.e. fuller tables).
 > 3. **Separate chaining** - simplest, resizable (use if do not know how many items to be included and there is a reasonable chance the table will become full), has fast insert and delete, but slow search. The load factor can be greater than 1. Also does not require rehashing every item in the case that the table becomes full like it does in open addressing.
-* Open addressing (when each array position contains a single item)
+* Closed Hashing/Open addressing (when each array position contains a single item)
     * Linear probing
         * How it works:
             * If array[N] is empty, put it there
@@ -159,7 +159,16 @@
         * When a collision occurs, a second hash function is used to determine the step.
             * Must not hash to 0.
             * Must be relative prime to the table size (not revisit the same positions)
-* Separate Chaining (when each array position contains a linked list of items)
+    * Cuckoo hashing
+        * Two hash functions and two hash tables.
+        * The first hash function determines index in the first table, and the second hash function determines index in the second table.
+        * If there is a collision in the first table, then store the item into the first table, and kick out the original item into the second table, and keep repeating until all the items have their own position. 
+        * Give a maximum limit on number of iterations to stop hashing.
+        * Time complexity
+            * Search: O(1) best and worst time complexity. The key is either in table 1 or 2, just insert it into the hash function.
+            * Insert: O(N) worst time complexity.
+            * Delete: O(1) worst time complexity.
+* Open Hashing/Separate Chaining (when each array position contains a linked list of items)
     * Insert: key inserted at end of linked list
     * Search: search for key in linked list
     * Delete: search for key, and then delete the node in the linked list
@@ -330,7 +339,7 @@
         * Call getMax() to remove the root/max item.
         * After the next element rises to the root position, place the max item back into the empty leaf position.
         * Repeat this for the number of items in the heap.
-        
+
 #### Array implementation
 * Assume index 0 of the array is left undefined.
 * If the parent node is at position *k*:
@@ -379,15 +388,15 @@
 ## 2.1 Sorts
 
 ### Summary of Sorts
-| Algorithm | Best case | Worst case | Stable | Incremental |
-| --- | --- | --- | --- | --- |
-| Bubble Sort - Basic | O(N^2) | O(N^2) | Yes | Yes (add to front), No (add to back) |
-| Bubble Sort - Optimised | O(N) | O(N^2) | Yes | Yes (add to front), No (add to back) |
-| Selection Sort | O(N^2) | O(N^2) | No (e.g. 3,3,1) | No |
-| Insertion Sort | O(N) | O(N^2) | Yes | Yes (add to back), No (add to front) |
-| Merge Sort | O(Nlog(N)) | O(Nlog(N)) | Yes | No |
-| Quick Sort | O(Nlog(N)) | O(N^2) | No | No |
-| Heap Sort | O(Nlog(N)) | O(Nlog(N)) | No | Yes |
+| Algorithm | Time complexity: Best case | Time complexity: Worst case | Stable | Incremental | Space complexity | Auxiliary space complexity |
+| --- | --- | --- | --- | --- | --- | --- |
+| Bubble Sort - Basic | O(N^2) | O(N^2) | Yes | Yes (add to front), No (add to back) | O(N) | O(1) |
+| Bubble Sort - Optimised | O(N) | O(N^2) | Yes | Yes (add to front), No (add to back) | O(N) | O(1) |
+| Selection Sort | O(N^2) | O(N^2) | No (e.g. 3,3,1) | No | O(N) | O(1) |
+| Insertion Sort | O(N) | O(N^2) | Yes | Yes (add to back), No (add to front) | O(N) | O(1) |
+| Merge Sort | O(Nlog(N)) | O(Nlog(N)) | Yes | No | O(N) | O(N) |
+| Quick Sort | O(Nlog(N)) | O(N^2) | No | No | O(N) | O(1) |
+| Heap Sort (in-place) | O(Nlog(N)) | O(Nlog(N)) | No | Yes | O(N) | O(1) |
 
 ### Sorting algorithm properties
 * Incremental: If it does not need to re-compute everything after a small change (e.g. if adding one new element to a sorted list should only take one iteration. It would not be incremental if it required re-sorting the entire list). 
@@ -459,8 +468,79 @@
     * List is sorted and implemented via an array.
         * An array would give O(1) access.
 
-# 3. Concepts
-## 3.1 Time complexity with Big O Notation
+# 3. Recursion (revise more)
+* Breaking a problem into smaller sub-problems until it reaches a base case, and then as we return through the calls it should be combining these sub-solutions.
+* General structure:
+    * At least one base case (solve directly)
+    * At least one recursive call whose result is combined.
+    * Convergence to the base case (i.e. each sub-problem must be simpler).
+* Every iterative problem can be solved recursively.
+* Every recursive problem can be solved iteratively, BUT past results may need to be stored in an accumulator or stack.
+
+## 3.1 Problems
+* Factorial
+* Fibonacci (revise accumulator version)
+    * Time complexity: O(2^n). Where log2(n) occurs when a problem keeps getting divided into half, fibonacci is binary (two recursive calls each time), so the problem doubles. Log is the inverse of exponential.
+* Power (to add)
+* Tower of Hanoi
+
+## 3.2 Recursive Sorts
+> Divide and conquer approach
+> Note that the algorithms run within the array. Each 'split' is really a 'segment' of that array.
+> Both of these also use accumulators (i.e. the whole array is passed recursively), and thus require auxiliary functions. They are tail recursive (nothing is done 'on the way down').
+### RS 1: Merge sort
+* https://www.youtube.com/watch?v=TzeBrDU-JaY
+* Keeps splitting the solution, then sorts on the way back up from the recursion, then merges the sorted sub-solutions.
+* General structure:
+    * Create a temporary array of the same size as the original array.
+    * Merge sort the left half (L).
+        * We cannot magicaclly sort each half if we only have two halves. So instead, we have to recursively call merge sort on each half to break them down even further.
+        * An array with one element is automatically sorted.
+    * Merge sort the right half (R).
+    * Merge the left and right sorted halves.
+* Invariant:
+    * At any point, the next smallest element is either the smallest unpicked sorted element in L or R.
+        * Therefore, three markers are required on the next position of L, R, and the temporary array.
+* Time complexity: O(nlog(n)) where n is the number of elements.
+* Space complexity: O(n) where n is the number of elements.
+
+
+### RS 2: Quick sort
+* https://www.youtube.com/watch?v=COk73cpQbFQ
+* General structure:
+    * Select the middle as the pivot *p*.
+    * Partition the array into two based on *p*.
+        * LHS has all elements smaller than *p*;
+        * RHS has all elements greater than *p*;
+    * Keep repeating the partitioning.
+* Time complexity:
+    * Best case: The value of *p* is ideally the median for best time complexity. This would be O(N*log(N)) where N is the number of elements, as it would mean the array would be perfectly partitioned in half each time, and then compared to every other element.
+    * Worst case: Where *p* is always the smallest or largest element. This would be O(N^2) where N is the number of elements. This is because the array would need to be partitioned by every single element, and compared to every other element.
+* Possible ways to select the pivot:
+    * Pick the first element - bad idea.
+    * Pick a random element - bad idea.
+    * Pick a small sample of elements and choose the median of these - good idea.
+* For now, we will just pick the middle element for simplicity.
+
+## 3.3 Notation
+* Unary, binary, n-ary:
+    * Unary: A single recursive call.
+    * Binary: Two recursive calls.
+    * n-ary: n recursive calls.
+* Direct vs Indirect:
+    * Direct: recursive calls are calls to the same function.
+    * Indirect: recursive calls are calls to two or more methods.
+* Tail-recursion:
+    * Where the result of the recursive call is the result of the function.
+    * Uses an **accumulator** which accumulates the result on the way down to the base case. Then, it does nothing on the way back on the returns from the recursive call except to carry the result back.
+
+# 4. Dynamic Programming
+## 4.1 Core Idea
+* Divide a problem into subproblems in a recursive manner and solve these. **Memoise** these solutions, and use them to gradually build the solution for the original problem.
+    * Memoise: optimisation technique to store the results of functions and return the cached result when the same inputs occur again.
+
+# 5. Other Concepts
+## 5.1 Time complexity with Big O Notation
 * Each **for loop** is O(n) where n is the number of iterations.
 * Always consider **best case** and **worst case** time complexity. This gives the range of possibilities.
     * Average case is between the two.
@@ -480,74 +560,16 @@
 | Exponential | O(2^N) | Combinatorial explosion (e.g. family tree) | If N doubles, T squares. |
 | Factorial | O(N!) | Find all permutations of N items | - |
 
-## 3.2 Recursion (revise more)
-* Breaking a problem into smaller sub-problems until it reaches a base case, and then as we return through the calls it should be combining these sub-solutions.
-* General structure:
-    * At least one base case (solve directly)
-    * At least one recursive call whose result is combined.
-    * Convergence to the base case (i.e. each sub-problem must be simpler).
-* Every iterative problem can be solved recursively.
-* Every recursive problem can be solved iteratively, BUT past results may need to be stored in an accumulator or stack.
+## 5.2 Space complexity
+* Same Big-O notation used as time complexity.
+* **Space complexity**: The amount of space taken by an algorithm to run as a function of the input size.
+* **Auxiliary space complexity**: The amount of space taken by an algorithm **in addition to** the space taken by the input. i.e. it is the extra space needed besides the input.
+    * An **in-place algorithm** has an auxiliary space complexity of O(1) because it takes no extra space e.g. quick-sort.
+* Merge sort has an auxiliary space complexity of O(N) as it requires an additional temporary array.
 
-### Problems
-* Factorial
-* Fibonacci (revise accumulator version)
-    * Time complexity: O(2^n). Where log2(n) occurs when a problem keeps getting divided into half, fibonacci is binary (two recursive calls each time), so the problem doubles. Log is the inverse of exponential.
-* Power (to add)
-* Tower of Hanoi
-
-### Recursive Sorts
-> Divide and conquer approach
-> Note that the algorithms run within the array. Each 'split' is really a 'segment' of that array.
-> Both of these also use accumulators (i.e. the whole array is passed recursively), and thus require auxiliary functions. They are tail recursive (nothing is done 'on the way down').
-#### RS 1: Merge sort
-* https://www.youtube.com/watch?v=TzeBrDU-JaY
-* Keeps splitting the solution, then sorts on the way back up from the recursion, then merges the sorted sub-solutions.
-* General structure:
-    * Create a temporary array of the same size as the original array.
-    * Merge sort the left half (L).
-        * We cannot magicaclly sort each half if we only have two halves. So instead, we have to recursively call merge sort on each half to break them down even further.
-        * An array with one element is automatically sorted.
-    * Merge sort the right half (R).
-    * Merge the left and right sorted halves.
-* Invariant:
-    * At any point, the next smallest element is either the smallest unpicked sorted element in L or R.
-        * Therefore, three markers are required on the next position of L, R, and the temporary array.
-* Time complexity: O(nlog(n)) where n is the number of elements.
-* Space complexity: O(n) where n is the number of elements.
-
-
-#### RS 2: Quick sort
-* https://www.youtube.com/watch?v=COk73cpQbFQ
-* General structure:
-    * Select the middle as the pivot *p*.
-    * Partition the array into two based on *p*.
-        * LHS has all elements smaller than *p*;
-        * RHS has all elements greater than *p*;
-    * Keep repeating the partitioning.
-* Time complexity:
-    * Best case: The value of *p* is ideally the median for best time complexity. This would be O(N*log(N)) where N is the number of elements, as it would mean the array would be perfectly partitioned in half each time, and then compared to every other element.
-    * Worst case: Where *p* is always the smallest or largest element. This would be O(N^2) where N is the number of elements. This is because the array would need to be partitioned by every single element, and compared to every other element.
-* Possible ways to select the pivot:
-    * Pick the first element - bad idea.
-    * Pick a random element - bad idea.
-    * Pick a small sample of elements and choose the median of these - good idea.
-* For now, we will just pick the middle element for simplicity.
-
-### Notation
-* Unary, binary, n-ary:
-    * Unary: A single recursive call.
-    * Binary: Two recursive calls.
-    * n-ary: n recursive calls.
-* Direct vs Indirect:
-    * Direct: recursive calls are calls to the same function.
-    * Indirect: recursive calls are calls to two or more methods.
-* Tail-recursion:
-    * Where the result of the recursive call is the result of the function.
-    * Uses an **accumulator** which accumulates the result on the way down to the base case. Then, it does nothing on the way back on the returns from the recursive call except to carry the result back.
-
-## 3.3 Testing
+## 5.3 Testing
 * Equivalence testing
     * Divide possible discrete inputs into equivalent classes and test each.
 * Boundary analysis
     * Test the boundaries of each class.
+

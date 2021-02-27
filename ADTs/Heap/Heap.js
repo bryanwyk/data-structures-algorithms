@@ -69,4 +69,14 @@ class maxHeap {
             }
         }
     }
+
+    inplaceHeapSort(){
+        for (let i=this.count; i>0; i--) {
+            // Remove the max value
+            const max = this.getMax();
+            // Add it to the last available position
+            this.array[i] = max;
+            
+        }
+    }
 }

@@ -325,7 +325,12 @@
     * *Heap-ordered*: Every child is smaller than (or equal to) its parent.
 * Min-heap
     * *Heap-ordered*: Every child is greater than (or equal to) its parent
-
+* **Allows in-place heap-sort**.
+    * Once you have your heap:
+        * Call getMax() to remove the root/max item.
+        * After the next element rises to the root position, place the max item back into the empty leaf position.
+        * Repeat this for the number of items in the heap.
+        
 #### Array implementation
 * Assume index 0 of the array is left undefined.
 * If the parent node is at position *k*:
@@ -380,7 +385,9 @@
 | Bubble Sort - Optimised | O(N) | O(N^2) | Yes | Yes (add to front), No (add to back) |
 | Selection Sort | O(N^2) | O(N^2) | No (e.g. 3,3,1) | No |
 | Insertion Sort | O(N) | O(N^2) | Yes | Yes (add to back), No (add to front) |
-| Merge Sort | O(Nlog(N)) | O(Nlog(N)) | - | - |
+| Merge Sort | O(Nlog(N)) | O(Nlog(N)) | Yes | No |
+| Quick Sort | O(Nlog(N)) | O(N^2) | No | No |
+| Heap Sort | O(Nlog(N)) | O(Nlog(N)) | No | Yes |
 
 ### Sorting algorithm properties
 * Incremental: If it does not need to re-compute everything after a small change (e.g. if adding one new element to a sorted list should only take one iteration. It would not be incremental if it required re-sorting the entire list). 

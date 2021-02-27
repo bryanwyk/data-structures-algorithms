@@ -315,9 +315,9 @@
             * Worst case: O(Depth) if balanced, O(N) if unbalanced.
         
 ### Heap
-
+> Note: JavaScript does not have an in-built heap implementation in comparison to Python which has the heapq library, and so it must be implemented with an array. (https://dandkim.com/js-heap-implementation/)
 #### Characteristics
-* Is a binary tree that is 
+* Is a binary tree that is:
     * Complete: all levels but the last are full, and the last level is filled from the left.
     * Heap-ordered: explained below.
 * Can either be a max-heap (where greater numbers are higher priority and it uses getMax), or a min-heap (where lower numbers are a higher priority and it uses getMin).
@@ -326,12 +326,31 @@
 * Min-heap
     * *Heap-ordered*: Every child is greater than (or equal to) its parent
 
+#### Array implementation
+* Assume index 0 of the array is left undefined.
+* If the parent node is at position *k*:
+    * The left child is at *2\*k*.
+    * The right child is at *2\*k+1*.
+
+| Parent Position | Child Left | Child Right |
+| --- | --- | --- | 
+| 1 | 2 | 3 |
+| 4 | 8 | 9 |  
+| 5 | 10 | 11 |
+
+
 #### Typical operations for a max-heap
 
 * add
     * Add the element to the next empty node as you would a BST, then keep swapping it up until the heap becomes heap-ordered.
+    * Time complexity:
+        * Best case: Where the element belongs to where it is initially added as a leaf so no swaps are made, which is O(1)*OComp. Adding and swapping in the array is constant, but a comparison needs to be made before each swap.
+        * Worst case: Where the element rises all the way to the root position, which is O(logN)*OComp. O(logN) swaps are made.
 * getMax
     * Swap the latest leaf with the root. Remove the root. Then swap the leaf (that is now at the root position) with the largest child, and repeatedly sink it until the heap becomes heap-ordered.
+    * Time complexity:
+        * Best case: Where the element is only swapped once, which is O(1)*OComp.
+        * Worst case: Where the element sinks to the bottom of the heap, which is O(logN)*OCopm, where O(logN) swaps are made and logN is the depth of the heap.
 
 
 ## 1.2 Data Structures

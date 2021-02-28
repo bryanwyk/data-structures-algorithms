@@ -533,7 +533,7 @@
 * General structure:
     * Create a temporary array of the same size as the original array.
     * Merge sort the left half (L).
-        * We cannot magicaclly sort each half if we only have two halves. So instead, we have to recursively call merge sort on each half to break them down even further.
+        * We cannot magically sort each half if we only have two halves. So instead, we have to recursively call merge sort on each half to break them down even further.
         * An array with one element is automatically sorted.
     * Merge sort the right half (R).
     * Merge the left and right sorted halves.

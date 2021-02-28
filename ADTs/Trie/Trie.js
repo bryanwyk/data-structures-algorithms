@@ -7,7 +7,7 @@ class Trie {
     }
 
     isEmpty(){
-        return this.root.children.length > 0;
+        return this.root.children.length === 0;
     }
 
     add(string){

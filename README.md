@@ -409,6 +409,20 @@
 #### Use cases
 * Use when you need to work with string keys.
 
+### Suffix Trie
+#### Characteristics
+* A single suffix trie represents a single word. Each sub-tree in the suffix trie represents a suffix in the word. e.g. refer would have 'refer', 'efer', 'fer', 'er', 'r'.
+
+#### Use cases
+* Allows efficient substring matching in comparison to a regular trie.
+    * Because every substring is a prefix of at least one suffix. e.g. to find 'ef', it would be a prefix of 'efer'.
+
+#### Typical operations
+* Search
+* Add word
+* Count # of occurrences of substring
+    * Count # of leaf nodes in the subtree rooted at the last node.
+
 # 2. Algorithms
 ## 2.1 Sorts
 

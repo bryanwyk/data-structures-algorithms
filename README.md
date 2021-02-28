@@ -392,6 +392,23 @@
 * Disadvantages:
     * More memory used than an array if the array is relatively full.
 
+### Trie
+#### Characteristics
+* Each node contains a letter. $ denotes the end of a string.
+* All words with a shared prefix fall within the same subtree/subtrie. 
+
+#### Implementation
+* The root node is always null.
+* Each node contains an array of alphabet size (e.g. 26 for English letters).
+* If i-th node exists, add a pointer to it at array[i]. e.g. if 'b' is the next letter, it would be in array[1].
+
+#### Typical operations
+* Search
+* Add word
+
+#### Use cases
+* Use when you need to work with string keys.
+
 # 2. Algorithms
 ## 2.1 Sorts
 

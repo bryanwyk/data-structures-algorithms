@@ -578,8 +578,31 @@
 * Divide a problem into subproblems in a recursive manner and solve these. **Memoise** these solutions, and use them to gradually build the solution for the original problem.
     * Memoise: optimisation technique to store the results of functions and return the cached result when the same inputs occur again.
 
-# 5. Other Concepts
-## 5.1 Time complexity with Big O Notation
+# 5. Graph
+## 5.1 Graph Properties
+* Composed of vertices and edges.
+* Graphs can be *weighted* or *unweighted*, *directed* or *undirected*.
+
+## 5.2 Graph Traversal Algorithms
+### Breadth First Search (BFS)
+* Traverses the graph one level at a time, from left to right.
+* Places nodes into a queue, so that the first nodes appended, are the first to be served.
+* Time complexity: O(V+E) where V is the # of vertices, and E is the # of edges.
+    * Each vertex is visited once.
+    * Each edge is visited at least twice.
+    * E is the total number of edges on the graph. It is *not* the number of edges adjacent to each vertex.
+* Space complexity: O(V+E)
+    * Each edge gets visited once and stored by the time the BFS ends.
+* Auxiliary space complexity: O(E)
+
+
+### Depth First Search (DFS)
+* Traverses the graph as deeply as possible before backtracking and traversing other nodes.
+* Places nodes into a stack, so that the last nodes pushed are the first to be popped off.
+* Time complexity and space complexities are the same as BFS.
+
+# 6. Other Concepts
+## 6.1 Time complexity with Big O Notation
 * Each **for loop** is O(n) where n is the number of iterations.
 * Always consider **best case** and **worst case** time complexity. This gives the range of possibilities.
     * Average case is between the two.
@@ -599,14 +622,14 @@
 | Exponential | O(2^N) | Combinatorial explosion (e.g. family tree) | If N doubles, T squares. |
 | Factorial | O(N!) | Find all permutations of N items | - |
 
-## 5.2 Space complexity
+## 6.2 Space complexity
 * Same Big-O notation used as time complexity.
 * **Space complexity**: The amount of space taken by an algorithm to run as a function of the input size.
 * **Auxiliary space complexity**: The amount of space taken by an algorithm **in addition to** the space taken by the input. i.e. it is the extra space needed besides the input.
     * An **in-place algorithm** has an auxiliary space complexity of O(1) because it takes no extra space e.g. quick-sort.
 * Merge sort has an auxiliary space complexity of O(N) as it requires an additional temporary array.
 
-## 5.3 Testing
+## 6.3 Testing
 * Equivalence testing
     * Divide possible discrete inputs into equivalent classes and test each.
 * Boundary analysis
